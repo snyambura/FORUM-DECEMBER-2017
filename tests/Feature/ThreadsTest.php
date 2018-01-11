@@ -20,6 +20,7 @@ class ThreadsTest extends TestCase
         $this->thread = factory(Thread::class)->create();
     }
 
+
     public function test_a_user_can_browse_threads()
     {
 
@@ -41,7 +42,7 @@ class ThreadsTest extends TestCase
     {
         $reply = factory(Reply::class)->create(['thread_id' => $this->thread->id]);
 
-        $this->get('/threads/' . $this->thread->id)
+        $this->get($this->thread->path())
             ->assertSee($reply->body);
     }
 }
